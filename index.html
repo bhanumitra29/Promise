@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+
+    <!-- 1st question -->
+
+    <pre>
+        <b>
+            Q1. Write one example explaining how you can write a callback function.
+        </b>
+    </pre>
+
+    <pre>
+        Solution:
+        function main(callback){
+            console.log("main");
+            callback();
+        }
+
+        function called(){
+            console.log("called");
+        }
+
+        main(called);
+
+        Explanation:
+        The output will be 
+        main
+        called
+
+        I created two functions and one function with parameters
+        and that parameter declared as function calling
+        and assigning another function as an argument
+        hence funtion called
+        
+    </pre>
+
+    <!-- 2nd question -->
+
+    <pre>
+        <b>
+            Q2. Write a callback function to print numbers 
+            from 1 to 7, in which 1 should be printed after 
+            1 sec, 2 should be printed after 2 sec, 3 should 
+            be printed after 3 sec, and so on. 
+
+            Explain callback hell.
+            Numbers
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+        </b>
+    </pre>
+
+    <pre>
+        Solution:
+        setTimeout(()=>{
+            console.log("1");
+            setTimeout(()=>{
+                console.log("2");
+                setTimeout(()=>{
+                    console.log("3");
+                    setTimeout(()=>{
+                        console.log("4");
+                        setTimeout(()=>{
+                            console.log("5");
+                            setTimeout(()=>{
+                                console.log("6");
+                                setTimeout(()=>{
+                                    console.log("7");
+                                },7000)
+                            },6000)
+                        },5000)
+                    },4000)
+                },3000)
+            },2000)
+        },1000)
+
+        Explanation:
+
+        callback hell: callback hell is where multiple nested callback
+         functions are used to handle asynchronous operations
+
+         To execute one asynchronous function, It leads 
+         to dependency of result of other asynchronous function
+         and this nesting can quickly lead to complex 
+         and hard to read code.
+    </pre>
+
+     <!-- 3rd question -->
+
+
+    <pre>
+        <b>
+            Q3. Write the promise function to print numbers 
+            from 1 to 7, in which 1 should be printed after 
+            1 sec, 2 should be printed after 2 sec, 3 should
+            be printed after 3 sec, and so on. 
+
+            Numbers
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+        </b>
+    </pre>
+
+    <pre>
+        Solution:
+
+        function first(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("1")
+                },1000)
+            })
+        }
+
+        function second(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("2")
+                },2000)
+            })
+        }
+
+        function third(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("3")
+                },3000)
+            })
+        }
+        
+        function fourth(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("4")
+                },4000)
+            })
+        }
+        
+        function fifth(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("5")
+                },5000)
+            })
+        }
+        
+        function sixth(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("6")
+                },6000)
+            })
+        }
+        
+        function seventh(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("7")
+                },7000)
+            })
+        }
+        
+        first()
+            .then((result)=>{
+            console.log(result)
+            return second(result)
+        })
+        .then((data)=>{
+            console.log(data)
+            return third(data);
+        })
+        .then((data1)=>{
+            console.log(data1)
+            return fourth(data1)
+        })
+        .then((data2)=>{
+            console.log(data2)
+            return fifth(data2)
+        })
+        .then((data3)=>{
+            console.log(data3)
+            return sixth(data3)
+        })
+        .then((data4)=>{
+            console.log(data4)
+            return seventh(data4)
+        })
+        .then((data5)=>{
+            console.log(data5)
+        })
+        .catch((err)=>{
+            console.log("Error:",err)
+        })
+
+
+        
+    </pre>
+
+     <!-- 4th question -->
+
+
+    <pre>
+        <b>
+            Q4. "Create a promise function accepting an argument, 
+            if yes is passed to the function then it should go to
+            resolved state and print Promise Resolved, and if 
+            nothing is passed then it should go to reject the state 
+            and catch the error and print Promise Rejected 
+        </b>
+    </pre>
+
+    <pre>
+        Solution:
+        
+        function mainPromise(arg){
+            return new Promise((res,rej)=>{
+                if(arg === "yes"){
+                    res("Promise Resolved");
+                }
+                else{
+                    rej("Promise Rejceted");
+                }
+            });
+        }
+
+        mainPromise("yes")
+            .then((result)=> console.log(result))
+            .catch((error)=> console.log(error));
+      
+
+            the output will be 
+            Promise Resolved
+    </pre>
+
+     <!-- 5th question -->
+
+
+    <pre>
+        <b>
+            Q5. Create examples to explain callback function
+        </b>
+    </pre>
+
+    <pre>
+        Solution:
+        function main(callback){
+            console.log("main");
+            callback();
+        }
+
+        function called(){
+            console.log("called");
+        }
+
+        main(called);
+
+        Explanation:
+        The output will be
+        main
+        called
+
+        I created two functions and one function with parameters
+        and that parameter declared as function calling
+        and assigning another function as an argument
+        hence funtion called
+        this is the simple example of callback
+        
+    </pre>
+    
+     <!-- 6th question -->
+
+
+    <pre>
+        <b>
+            Q6. Create examples to explain callback hell function
+        </b>
+    </pre>
+
+    <pre>
+        Solution:
+        function first(callback){
+            console.log("first callback");
+            callback();
+        }
+
+        function second(callback){
+            console.log("second callback");
+            callback();
+        }
+
+        function third(callback){
+            console.log("third callback");
+            callback();
+        }
+
+        function fourth(callback){
+            console.log("fourth callback");
+            callback();
+        }
+
+        function fifth(){
+            console.log("fifth callback");
+        }
+
+        first(()=>{
+            second(()=>{
+                third(()=>{
+                    fourth(()=>{
+                        fifth();
+                    })
+                })
+            })
+        })
+
+        Explanation:
+
+        The output will be
+        first callback
+        second callback
+        third callback
+        fourth callback
+        fifth callback
+
+
+        callback hell: callback hell is where multiple nested callback
+         functions are used to handle asynchronous operations
+
+         To execute one asynchronous function, It leads 
+         to dependency of result of other asynchronous function
+         and this can quickly lead to complex 
+         and hard to read code.
+
+         In the above code i created five callback funtions and 
+         called them using arrow funtion and they are connected 
+         through arguments
+         The sequence of function calls creates a chain of 
+         callbacks that are executed one after the other in a 
+         nested form. This is called as callback hell
+    </pre>
+
+     <!-- 7th question -->
+
+
+    <pre>
+        <b>
+            Q7. Create examples to explain promises function
+        </b>
+    </pre>
+
+    <pre>
+        Solution:
+        function first(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("first")
+                },1000)
+            })
+        }
+
+        function second(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("second")
+                },1000)
+            })
+        }
+
+        function third(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    rej("Something went wrong in third function");
+                },1000)
+            })
+        }
+
+        first()
+            .then((result)=>{
+            console.log(result)
+            return second(result)
+        })
+        .then((data)=>{
+            console.log(data)
+            return third(data);
+        })
+        .then((data1)=>{
+            console.log(data1)
+        })
+        .catch((err)=>{
+            console.log("Error:",err)
+        })
+
+
+        Explanation:
+
+        The output will be
+        first
+        second
+        ERROR!
+        Error: Something went wrong in third function
+
+        The code defines three functions: first(), 
+        second(), and third(). Each function returns a 
+        Promise, which resolves after a delay using 
+        setTimeout.
+
+        The third() function intentionally rejects its 
+        Promise with the message "Something went wrong 
+        in the third function" after a delay of 1 second.
+
+        The Promise chain starts with a call to first().
+
+        In the first .then , the resolved value "first" 
+        from the first() function is received as result, 
+        and it is printed to the console using 
+        console.log(result) and returning second function
+
+        similarly for second and returning third
+        and we give .catch for error displaying
+    </pre>
+
+
+     <!-- 8th question -->
+
+
+    <pre>
+        <b>
+            Q8. Create examples to explain async await function
+        </b>
+    </pre>
+
+    <pre>
+        Solution:
+
+        function main(sec) {
+            return new Promise((res)=>{
+                setTimeout(()=>{
+                    res(`waited for ${sec} milliseconds`);
+                },sec);
+            });
+        }
+
+        async function waiting(){
+            const result = await main(2000);
+            console.log(result);
+        }
+
+        waiting();
+
+        Explanation:
+        The await keyword is used to pause the execution 
+
+        I created two functions and one is called in another
+
+        I used await to pause execution for certain Time
+
+        and this await will work only for async functions 
+        so used in async function
+
+        the out put will be
+        waited for 2000 milliseconds
+
+
+    </pre>
+
+     <!-- 9th question -->
+
+
+    <pre>
+        <b>
+            Q9. Create examples to explain promise.all function
+        </b>
+    </pre>
+
+    <pre>
+        Solution:
+        function first(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("first")
+                },1000)
+            })
+        }
+
+        function second(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("second")
+                },1000)
+            })
+        }
+
+        function third(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res("third")
+                },1000)
+            })
+        }
+        
+        Promise.all([first(), second(), third()])
+        .then((results) => {
+        console.log("All data fetched:", results);
+        })
+        .catch((error) => {
+        console.error("Error:", error);
+        });
+
+        Explanation:
+        The code defines three functions: first(), 
+        second(), and third(). Each function returns a 
+        Promise, which resolves after a delay using setTimeout.
+
+        The Promise.all method is used to handle multiple 
+        Promises concurrently. It takes an array of 
+        Promises as input and returns a new Promise that 
+        resolves with an array of all resolved values when 
+        all the input Promises are resolved. If any of the 
+        input Promises is rejected, the main Promise will 
+        be rejected with the first encountered rejection 
+        reason.
+
+        The console.log statement will print 
+        "All data fetched: ["first", "second", "third"]" 
+        to the console.
+    </pre>
+
+   
+</body>
+</html>
